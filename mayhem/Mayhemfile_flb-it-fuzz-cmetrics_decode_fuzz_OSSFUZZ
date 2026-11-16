@@ -1,0 +1,8 @@
+# Upstream libFuzzer harness tests/internal/fuzzers/cmetrics_decode_fuzz.c, built the way OSS-Fuzz builds it
+# (CMake target flb-it-fuzz-cmetrics_decode_fuzz_OSSFUZZ); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: flb-it-fuzz-cmetrics_decode_fuzz_OSSFUZZ
+
+cmds:
+  - cmd: /mayhem/flb-it-fuzz-cmetrics_decode_fuzz_OSSFUZZ
+    libfuzzer: true

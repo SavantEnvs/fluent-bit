@@ -1,0 +1,8 @@
+# Effective .dockerignore for `docker build -f mayhem/Dockerfile` (BuildKit prefers
+# <Dockerfile>.dockerignore over the context-root file). Upstream's root .dockerignore drops
+# build/** and dockerfiles/**, both of which hold TRACKED files (build/.empty, dockerfiles/*), so
+# using it would bake a tree that differs from the commit. The commit image is a dev image: keep the
+# FULL repo incl. .git history and drop only editor/OS noise.
+.DS_Store
+*.swp
+*~

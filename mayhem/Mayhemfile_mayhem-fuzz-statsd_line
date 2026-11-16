@@ -1,0 +1,12 @@
+# in_statsd datagram decoding: statsd_process_line per line (log mode) or cmt_decode_statsd_create (metrics mode). First input bytes = allocation-failure selector, mode.
+# Harness: mayhem/statsd_line_fuzzer.c (built by mayhem/fuzz_build_hooks.cmake as CMake target mayhem-fuzz-statsd_line); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: mayhem-fuzz-statsd_line
+
+cmds:
+  - cmd: /mayhem/mayhem-fuzz-statsd_line
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/mayhem-fuzz-statsd_line/testsuite

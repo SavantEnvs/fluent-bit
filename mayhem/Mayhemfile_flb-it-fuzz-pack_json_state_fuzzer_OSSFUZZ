@@ -1,0 +1,10 @@
+# Upstream libFuzzer harness tests/internal/fuzzers/pack_json_state_fuzzer.c, built the way OSS-Fuzz builds it
+# (CMake target flb-it-fuzz-pack_json_state_fuzzer_OSSFUZZ); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: flb-it-fuzz-pack_json_state_fuzzer_OSSFUZZ
+
+cmds:
+  - cmd: /mayhem/flb-it-fuzz-pack_json_state_fuzzer_OSSFUZZ
+    libfuzzer: true
+    # upstream's JSON dictionary (bundled yyjson's fuzz/fuzzer.dict), staged by mayhem/build.sh
+    dictionary: /mayhem/flb-json.dict

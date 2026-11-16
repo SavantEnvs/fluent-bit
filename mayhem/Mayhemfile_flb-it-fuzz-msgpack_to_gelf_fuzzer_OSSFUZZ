@@ -1,0 +1,8 @@
+# Upstream libFuzzer harness tests/internal/fuzzers/msgpack_to_gelf_fuzzer.c, built the way OSS-Fuzz builds it
+# (CMake target flb-it-fuzz-msgpack_to_gelf_fuzzer_OSSFUZZ); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: flb-it-fuzz-msgpack_to_gelf_fuzzer_OSSFUZZ
+
+cmds:
+  - cmd: /mayhem/flb-it-fuzz-msgpack_to_gelf_fuzzer_OSSFUZZ
+    libfuzzer: true

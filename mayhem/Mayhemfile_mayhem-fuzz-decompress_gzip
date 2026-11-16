@@ -1,0 +1,12 @@
+# flb_gzip_uncompress_multi over concatenated members, and the streaming flb_decompress gzip decompressor (whole input and 64-byte chunks). First input byte = allocation-failure selector.
+# Harness: mayhem/gzip_decompress_fuzzer.c (built by mayhem/fuzz_build_hooks.cmake as CMake target mayhem-fuzz-decompress_gzip); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: mayhem-fuzz-decompress_gzip
+
+cmds:
+  - cmd: /mayhem/mayhem-fuzz-decompress_gzip
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/mayhem-fuzz-decompress_gzip/testsuite

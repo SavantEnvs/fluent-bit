@@ -1,0 +1,12 @@
+# flb_snappy_uncompress / _framed_data / _bounded and flb_zstd_uncompress, then flb_decompress_buffer for both: the raw and framed snappy and zstd decoders behind compressed HTTP bodies, forward and the HTTP outputs. First input byte = allocation-failure selector.
+# Harness: mayhem/decompress_snappy_zstd_fuzzer.c (built by mayhem/fuzz_build_hooks.cmake as CMake target mayhem-fuzz-decompress_snappy_zstd); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: mayhem-fuzz-decompress_snappy_zstd
+
+cmds:
+  - cmd: /mayhem/mayhem-fuzz-decompress_snappy_zstd
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/mayhem-fuzz-decompress_snappy_zstd/testsuite

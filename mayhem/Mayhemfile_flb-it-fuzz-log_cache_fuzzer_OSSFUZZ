@@ -1,0 +1,8 @@
+# Upstream libFuzzer harness tests/internal/fuzzers/log_cache_fuzzer.c, built the way OSS-Fuzz builds it
+# (CMake target flb-it-fuzz-log_cache_fuzzer_OSSFUZZ); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: flb-it-fuzz-log_cache_fuzzer_OSSFUZZ
+
+cmds:
+  - cmd: /mayhem/flb-it-fuzz-log_cache_fuzzer_OSSFUZZ
+    libfuzzer: true

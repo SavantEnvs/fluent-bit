@@ -1,0 +1,12 @@
+# in_collectd UDP datagram decoding: netprot_to_msgpack over a fixed TypesDB with the plugin's log event encoder. First input byte = allocation-failure selector.
+# Harness: mayhem/collectd_packet_fuzzer.c (built by mayhem/fuzz_build_hooks.cmake as CMake target mayhem-fuzz-collectd_packet); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: mayhem-fuzz-collectd_packet
+
+cmds:
+  - cmd: /mayhem/mayhem-fuzz-collectd_packet
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/mayhem-fuzz-collectd_packet/testsuite

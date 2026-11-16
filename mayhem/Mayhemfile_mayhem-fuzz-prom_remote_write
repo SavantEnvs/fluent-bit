@@ -1,0 +1,12 @@
+# Prometheus remote-write request body (WriteRequest protobuf): cmt_decode_prometheus_remote_write_create, as in_prometheus_remote_write's process_payload_metrics_ng calls it, then msgpack encoding and destroy. First input byte = allocation-failure selector.
+# Harness: mayhem/prom_remote_write_fuzzer.c (built by mayhem/fuzz_build_hooks.cmake as CMake target mayhem-fuzz-prom_remote_write); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: mayhem-fuzz-prom_remote_write
+
+cmds:
+  - cmd: /mayhem/mayhem-fuzz-prom_remote_write
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/mayhem-fuzz-prom_remote_write/testsuite

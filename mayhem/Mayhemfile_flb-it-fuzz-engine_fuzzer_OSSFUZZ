@@ -1,0 +1,15 @@
+# Upstream libFuzzer harness tests/internal/fuzzers/engine_fuzzer.c, built the way OSS-Fuzz builds it
+# (CMake target flb-it-fuzz-engine_fuzzer_OSSFUZZ); see mayhem/build.sh.
+# The harness returns before touching fluent-bit unless the input is >= 100 bytes (1 selector
+# byte, then fixed-width 50/10/10-byte strings and two ints), so a cold corpus of short inputs
+# covers nothing. The seeds below are one valid 104-byte input per selector branch.
+project: savantenvs/fluent-bit
+target: flb-it-fuzz-engine_fuzzer_OSSFUZZ
+
+cmds:
+  - cmd: /mayhem/flb-it-fuzz-engine_fuzzer_OSSFUZZ
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/flb-it-fuzz-engine_fuzzer_OSSFUZZ/testsuite

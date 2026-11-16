@@ -1,0 +1,12 @@
+# Upstream libFuzzer harness tests/internal/fuzzers/config_yaml_fuzzer.c, built the way OSS-Fuzz builds it
+# (CMake target flb-it-fuzz-config_yaml_fuzzer_OSSFUZZ); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: flb-it-fuzz-config_yaml_fuzzer_OSSFUZZ
+
+cmds:
+  - cmd: /mayhem/flb-it-fuzz-config_yaml_fuzzer_OSSFUZZ
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/flb-it-fuzz-config_yaml_fuzzer_OSSFUZZ/testsuite

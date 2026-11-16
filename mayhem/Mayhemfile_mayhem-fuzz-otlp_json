@@ -1,0 +1,12 @@
+# OTLP/HTTP JSON bodies: flb_opentelemetry_metrics_json_to_cmt (second byte 0) or flb_opentelemetry_json_traces_to_ctrace (second byte non-zero), as in_opentelemetry calls them for a JSON Content-Type. First input bytes = allocation-failure selector, signal.
+# Harness: mayhem/otlp_json_fuzzer.c (built by mayhem/fuzz_build_hooks.cmake as CMake target mayhem-fuzz-otlp_json); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: mayhem-fuzz-otlp_json
+
+cmds:
+  - cmd: /mayhem/mayhem-fuzz-otlp_json
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/mayhem-fuzz-otlp_json/testsuite

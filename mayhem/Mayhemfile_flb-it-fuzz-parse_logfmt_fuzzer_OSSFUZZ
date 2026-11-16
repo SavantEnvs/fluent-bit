@@ -1,0 +1,8 @@
+# Upstream libFuzzer harness tests/internal/fuzzers/parse_logfmt_fuzzer.c, built the way OSS-Fuzz builds it
+# (CMake target flb-it-fuzz-parse_logfmt_fuzzer_OSSFUZZ); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: flb-it-fuzz-parse_logfmt_fuzzer_OSSFUZZ
+
+cmds:
+  - cmd: /mayhem/flb-it-fuzz-parse_logfmt_fuzzer_OSSFUZZ
+    libfuzzer: true

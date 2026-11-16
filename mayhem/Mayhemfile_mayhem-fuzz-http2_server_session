@@ -1,0 +1,12 @@
+# HTTP/2 server session ingest (flb_http_server_session_ingest on an h2 session, nghttp2) in chunks, then the request drain with Content-Encoding inflation, as flb_http_server_client_activity_event_handler does it. First input bytes = allocation-failure selector, ingest chunk size.
+# Harness: mayhem/http2_server_session_fuzzer.c (built by mayhem/fuzz_build_hooks.cmake as CMake target mayhem-fuzz-http2_server_session); see mayhem/build.sh.
+project: savantenvs/fluent-bit
+target: mayhem-fuzz-http2_server_session
+
+cmds:
+  - cmd: /mayhem/mayhem-fuzz-http2_server_session
+    libfuzzer: true
+
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/mayhem-fuzz-http2_server_session/testsuite
